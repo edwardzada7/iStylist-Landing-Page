@@ -26,31 +26,35 @@ body{
 }
 
 /* =========================
-   LAGOS BACKGROUND (DARKER + CLEAR)
+   BACKGROUND (FIXED RELIABLE)
 ========================= */
 .city{
   position:fixed;
   inset:0;
   z-index:0;
+
+  /* fallback so it NEVER shows blank */
+  background:
+    linear-gradient(to bottom, #05060a, #0b0f1a);
 }
 
-/* IMAGE LAYER (SLIDESHOW) */
+/* image layer */
 .city::before{
   content:"";
   position:absolute;
   inset:0;
   background-size:cover;
   background-position:center;
-  filter:brightness(0.25) contrast(1.4) saturate(1.2);
+  opacity:1;
+  filter:brightness(0.28) contrast(1.4);
   animation:zoom 18s ease-in-out infinite;
 }
 
-/* DARK OVERLAY (KEY FIX FOR READABILITY) */
+/* dark overlay for readability */
 .city::after{
   content:"";
   position:absolute;
   inset:0;
-
   background:
     linear-gradient(to bottom,
       rgba(5,6,10,0.85),
@@ -61,7 +65,6 @@ body{
     radial-gradient(circle at 80% 70%,rgba(0,229,255,0.10),transparent 50%);
 }
 
-/* smooth motion */
 @keyframes zoom{
   0%{transform:scale(1.05);}
   50%{transform:scale(1.12);}
@@ -87,7 +90,6 @@ body{
   font-weight:bold;
 }
 
-/* blinking i */
 .logo-i{
   color:var(--pink);
   text-shadow:0 0 25px var(--pink),0 0 50px var(--cyan);
@@ -158,12 +160,48 @@ body{
 section{
   position:relative;
   z-index:2;
-  padding:80px 20px;
+  padding:70px 20px;
   text-align:center;
 }
 
 h2{font-size:34px;margin-bottom:10px;}
 p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
+
+/* =========================
+   TRUSTED PARTNERS
+========================= */
+.partners{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-top:20px;
+}
+
+.partner{
+  padding:10px 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.2);
+}
+
+/* =========================
+   DOWNLOAD BUTTONS
+========================= */
+.downloads{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:20px;
+}
+
+.store{
+  padding:12px 18px;
+  border-radius:12px;
+  background:black;
+  border:1px solid rgba(255,255,255,0.2);
+  cursor:pointer;
+}
 
 /* =========================
    FAQ
@@ -197,7 +235,6 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
 
 <body>
 
-<!-- BACKGROUND -->
 <div class="city"></div>
 
 <!-- HERO -->
@@ -211,6 +248,29 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
   </div>
 </div>
 
+<!-- TRUSTED PARTNERS -->
+<section>
+  <h2>Trusted Partners</h2>
+  <p>Secure payments powered by trusted providers</p>
+
+  <div class="partners">
+    <div class="partner">Paystack</div>
+    <div class="partner">Providus Bank</div>
+    <div class="partner">Stripe</div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section>
+  <h2>Download iStylist</h2>
+  <p>Get the app on your device</p>
+
+  <div class="downloads">
+    <div class="store">📱 iOS App Store</div>
+    <div class="store">🤖 Google Play Store</div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section>
   <h2>FAQ</h2>
@@ -223,12 +283,12 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
 
     <div class="faq-item" onclick="toggle(this)">
       <h4>How does booking work?</h4>
-      <p>Select service → choose stylist → book instantly.</p>
+      <p>Select a service, choose stylist, and book instantly.</p>
     </div>
 
     <div class="faq-item" onclick="toggle(this)">
       <h4>Is payment secure?</h4>
-      <p>Yes — payments are processed via Paystack.</p>
+      <p>Yes — payments are processed via Paystack and trusted gateways.</p>
     </div>
   </div>
 </section>
@@ -239,23 +299,24 @@ function toggle(el){
 }
 
 /* =========================
-   TRUE LAGOS IMAGE SET
+   GUARANTEED BACKGROUND LOAD
 ========================= */
 const images = [
-  "https://images.unsplash.com/photo-1585061528750-3b8f0c0f5f5c?auto=format&fit=crop&w=2000&q=80", 
+  "https://images.unsplash.com/photo-1585061528750-3b8f0c0f5f5c?auto=format&fit=crop&w=2000&q=80",
   "https://images.unsplash.com/photo-1620656798579-1984d9e7d8c5?auto=format&fit=crop&w=2000&q=80",
   "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=2000&q=80"
 ];
 
+const city = document.querySelector(".city");
 let i = 0;
 
-function changeBg(){
-  document.querySelector(".city").style.setProperty("background-image", `url(${images[i]})`);
+function setBg(){
+  city.style.backgroundImage = `url(${images[i]})`;
   i = (i + 1) % images.length;
 }
 
-changeBg();
-setInterval(changeBg, 7000);
+setBg();                // immediate load (fixes blank issue)
+setInterval(setBg, 6000);
 </script>
 
 </body>
