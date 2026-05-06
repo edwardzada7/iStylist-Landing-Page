@@ -25,58 +25,38 @@ body{
   color:white;
 }
 
-<script>
-function toggle(el){
-  el.classList.toggle("active");
-}
-
 /* =========================
-   LAGOS BACKGROUND (VISIBLE + DARK)
+   BACKGROUND (LAGOS VISIBLE + DARK)
 ========================= */
-const images = [
-  "https://images.unsplash.com/photo-1605460375648-278bcbd579a6?auto=format&fit=crop&w=2000&q=80", // Lekki-Ikoyi Bridge
-  "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=2000&q=80", // Lagos skyline
-  "https://images.unsplash.com/photo-1585061528750-3b8f0c0f5f5c?auto=format&fit=crop&w=2000&q=80", // Victoria Island
-  "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=2000&q=80"  // Lagos aerial
-];
-
-const city = document.querySelector(".city");
-let i = 0;
-
-function setBg(){
-  city.style.backgroundImage = `url(${images[i]})`;
-  i = (i + 1) % images.length;
+.city{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  background: linear-gradient(to bottom, #05060a, #0b0f1a);
 }
 
-setBg();
-setInterval(setBg, 6000);
-</script>
-
-/* image layer */
 .city::before{
   content:"";
   position:absolute;
   inset:0;
   background-size:cover;
   background-position:center;
-  opacity:1;
-  filter: brightness(0.45) contrast(1.3) saturate(1.1);
+  filter:brightness(0.45) contrast(1.3) saturate(1.1);
   animation:zoom 18s ease-in-out infinite;
 }
 
-/* dark overlay for readability */
 .city::after{
   content:"";
   position:absolute;
   inset:0;
   background:
-  linear-gradient(to bottom,
-    rgba(5,6,10,0.7),
-    rgba(5,6,10,0.6),
-    rgba(5,6,10,0.85)
-  ),
-  radial-gradient(circle at 20% 30%,rgba(255,79,216,0.10),transparent 45%),
-  radial-gradient(circle at 80% 70%,rgba(0,229,255,0.08),transparent 50%);
+    linear-gradient(to bottom,
+      rgba(5,6,10,0.7),
+      rgba(5,6,10,0.6),
+      rgba(5,6,10,0.85)
+    ),
+    radial-gradient(circle at 20% 30%,rgba(255,79,216,0.10),transparent 45%),
+    radial-gradient(circle at 80% 70%,rgba(0,229,255,0.08),transparent 50%);
 }
 
 @keyframes zoom{
@@ -116,7 +96,6 @@ setInterval(setBg, 6000);
   50%{opacity:1;}
 }
 
-/* sparkle */
 .logo-i::after{
   content:"";
   position:absolute;
@@ -142,7 +121,6 @@ setInterval(setBg, 6000);
   max-width:360px;
 }
 
-/* buttons */
 .buttons{
   margin-top:20px;
   display:flex;
@@ -307,17 +285,21 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
   </div>
 </section>
 
+<!-- COPYRIGHT -->
+<div style="position:relative;z-index:2;text-align:center;padding:20px;font-size:12px;opacity:0.6;">
+  © 2026 iStylist. All rights reserved.
+</div>
+
 <script>
 function toggle(el){
   el.classList.toggle("active");
 }
 
-/* =========================
-   GUARANTEED BACKGROUND LOAD
-========================= */
+/* LAGOS BACKGROUND ROTATION */
 const images = [
+  "https://images.unsplash.com/photo-1605460375648-278bcbd579a6?auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=2000&q=80",
   "https://images.unsplash.com/photo-1585061528750-3b8f0c0f5f5c?auto=format&fit=crop&w=2000&q=80",
-  "https://images.unsplash.com/photo-1620656798579-1984d9e7d8c5?auto=format&fit=crop&w=2000&q=80",
   "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=2000&q=80"
 ];
 
@@ -329,7 +311,7 @@ function setBg(){
   i = (i + 1) % images.length;
 }
 
-setBg();                // immediate load (fixes blank issue)
+setBg();
 setInterval(setBg, 6000);
 </script>
 
