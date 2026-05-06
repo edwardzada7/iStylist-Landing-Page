@@ -15,6 +15,55 @@ body{
   color:white;
 }
 
+  .logo {
+  position: relative;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* THE "i" */
+.i-logo {
+  position: relative;
+  display: inline-block;
+  animation: glow 2s infinite ease-in-out;
+}
+
+/* GLOW EFFECT */
+@keyframes glow {
+  0%,100% { text-shadow: 0 0 5px #fff; }
+  50% { text-shadow: 0 0 15px #fff, 0 0 25px #ff4da6; }
+}
+
+/* SPARKLES */
+.sparkle-container {
+  position: absolute;
+  top: -10px;
+  left: 5px;
+  pointer-events: none;
+}
+
+/* INDIVIDUAL SPARKLE */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: rise 2s linear forwards;
+}
+
+/* SPARKLE ANIMATION */
+@keyframes rise {
+  0% {
+    transform: translate(0,0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), -40px) scale(0.5);
+    opacity: 0;
+  }
+}
 /* NAV */
 nav{
   display:flex;justify-content:space-between;
@@ -125,7 +174,10 @@ footer{
 <body>
 
 <nav>
-  <div class="logo">iStylist ✨</div>
+  <div class="logo">
+  <span class="i-logo">i</span>Stylist
+  <div class="sparkle-container"></div>
+</div>
   <button class="nav-btn" onclick="goToApp()">Sign In</button>
 </nav>
 
@@ -232,6 +284,23 @@ footer{
 function goToApp(){
   window.location.href = "/app";
 }
+  function createSparkle() {
+  const container = document.querySelector('.sparkle-container');
+  const sparkle = document.createElement('div');
+  sparkle.classList.add('sparkle');
+
+  // random direction
+  sparkle.style.setProperty('--x', (Math.random() * 20 - 10) + 'px');
+
+  container.appendChild(sparkle);
+
+  setTimeout(() => {
+    sparkle.remove();
+  }, 2000);
+}
+
+// continuously generate sparkles
+setInterval(createSparkle, 300);
 </script>
 
 </body>
