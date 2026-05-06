@@ -10,6 +10,7 @@
   --pink:#ff4fd8;
   --cyan:#00e5ff;
   --dark:#05060a;
+  --white:#ffffff;
 }
 
 *{
@@ -26,24 +27,27 @@ body{
 }
 
 /* =========================
-   BACKGROUND SLIDESHOW
+   BACKGROUND SYSTEM
 ========================= */
 .city{
   position:fixed;
   inset:0;
   z-index:0;
+  overflow:hidden;
 }
 
+/* rotating Lagos-style city images */
 .city::before{
   content:"";
   position:absolute;
   inset:0;
   background-size:cover;
   background-position:center;
-  filter:brightness(0.45) contrast(1.2);
-  animation:zoom 20s infinite ease-in-out;
+  filter:brightness(0.4) contrast(1.3);
+  animation:zoom 18s ease-in-out infinite;
 }
 
+/* neon overlay */
 .city::after{
   content:"";
   position:absolute;
@@ -53,7 +57,7 @@ body{
     radial-gradient(circle at 80% 70%,rgba(0,229,255,0.14),transparent 45%);
 }
 
-/* smooth zoom motion */
+/* soft motion */
 @keyframes zoom{
   0%{transform:scale(1.05);}
   50%{transform:scale(1.12);}
@@ -74,20 +78,20 @@ body{
   text-align:center;
 }
 
+/* LOGO */
 .logo{
-  font-size:80px;
+  font-size:82px;
   font-weight:bold;
 }
 
-/* FIXED BLINKING i */
+/* blinking i */
 .logo-i{
   color:var(--pink);
-  text-shadow:0 0 25px var(--pink),0 0 40px var(--cyan);
+  text-shadow:0 0 25px var(--pink),0 0 50px var(--cyan);
   position:relative;
-  animation:pulse 1.5s infinite;
+  animation:pulse 1.4s infinite;
 }
 
-/* blinking glow */
 @keyframes pulse{
   0%,100%{
     opacity:0.6;
@@ -95,7 +99,7 @@ body{
   }
   50%{
     opacity:1;
-    text-shadow:0 0 25px var(--pink),0 0 50px var(--cyan);
+    text-shadow:0 0 30px var(--pink),0 0 60px var(--cyan);
   }
 }
 
@@ -122,11 +126,28 @@ body{
 .tagline{
   margin-top:10px;
   opacity:0.8;
-  max-width:320px;
+  max-width:360px;
 }
 
-.buttons{
+/* =========================
+   AI SEARCH BAR (NEW)
+========================= */
+.search{
   margin-top:25px;
+  width:300px;
+  padding:12px 15px;
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.05);
+  color:white;
+  outline:none;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.buttons{
+  margin-top:20px;
   display:flex;
   gap:12px;
 }
@@ -158,10 +179,53 @@ section{
   z-index:2;
   padding:80px 20px;
   text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
 }
 
-h2{font-size:34px;}
-p{opacity:0.8;max-width:500px;margin:auto;line-height:1.6;}
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h2{font-size:34px;margin-bottom:10px;}
+p{opacity:0.8;max-width:520px;margin:auto;line-height:1.6;}
+
+/* =========================
+   TRUSTED PARTNERS
+========================= */
+.partners{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-top:20px;
+}
+
+.partner{
+  padding:10px 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.2);
+}
+
+/* =========================
+   DOWNLOAD BUTTONS
+========================= */
+.downloads{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:20px;
+}
+
+.store{
+  padding:12px 18px;
+  border-radius:12px;
+  background:black;
+  border:1px solid rgba(255,255,255,0.2);
+}
 
 /* =========================
    FAQ
@@ -195,6 +259,7 @@ p{opacity:0.8;max-width:500px;margin:auto;line-height:1.6;}
 
 <body>
 
+<!-- BACKGROUND -->
 <div class="city"></div>
 
 <!-- HERO -->
@@ -202,11 +267,37 @@ p{opacity:0.8;max-width:500px;margin:auto;line-height:1.6;}
   <div class="logo"><span class="logo-i">i</span>Stylist</div>
   <div class="tagline">Book Beauty, Fashion & Lifestyle Services Anywhere</div>
 
+  <!-- AI SEARCH BAR -->
+  <input class="search" placeholder="Search stylist, makeup, barber..." />
+
   <div class="buttons">
     <button class="btn primary">Get Started</button>
     <button class="btn secondary">Explore</button>
   </div>
 </div>
+
+<!-- TRUSTED PARTNERS -->
+<section>
+  <h2>Trusted Partners</h2>
+  <p>Secure payments & verified infrastructure</p>
+
+  <div class="partners">
+    <div class="partner">Paystack</div>
+    <div class="partner">Providus Bank</div>
+    <div class="partner">Stripe</div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section>
+  <h2>Download iStylist</h2>
+  <p>Get the app on your device</p>
+
+  <div class="downloads">
+    <div class="store">📱 App Store</div>
+    <div class="store">🤖 Google Play</div>
+  </div>
+</section>
 
 <!-- FAQ -->
 <section>
@@ -220,36 +311,44 @@ p{opacity:0.8;max-width:500px;margin:auto;line-height:1.6;}
 
     <div class="faq-item" onclick="toggle(this)">
       <h4>How does booking work?</h4>
-      <p>Select service → choose stylist → set time → confirm instantly.</p>
+      <p>Select service → choose stylist → book instantly.</p>
     </div>
 
     <div class="faq-item" onclick="toggle(this)">
       <h4>Is payment secure?</h4>
-      <p>Yes, payments are handled securely via Paystack.</p>
+      <p>Yes — payments are handled via trusted gateways like Paystack.</p>
     </div>
   </div>
 </section>
 
 <script>
+/* FAQ toggle */
 function toggle(el){
   el.classList.toggle("active");
 }
 
-/* =========================
-   BACKGROUND SLIDESHOW
-========================= */
+/* SECTION REVEAL */
+const sections = document.querySelectorAll("section");
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add("show");
+  });
+},{threshold:0.2});
+
+sections.forEach(s=>observer.observe(s));
+
+/* BACKGROUND SLIDESHOW */
 const images = [
   "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=80",
   "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2000&q=80",
   "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2000&q=80"
 ];
 
-let index = 0;
+let i = 0;
 
 function changeBg(){
-  document.querySelector(".city").style.setProperty("--img", images[index]);
-  document.querySelector(".city").style.setProperty("background-image", `url(${images[index]})`);
-  index = (index + 1) % images.length;
+  document.querySelector(".city").style.setProperty("background-image", `url(${images[i]})`);
+  i = (i + 1) % images.length;
 }
 
 changeBg();
