@@ -13,9 +13,9 @@
   --pink: #ff4fd8;
   --cyan: #00e5ff;
   --dark: #05060a;
-  --white: #ffffff;
 }
 
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -26,37 +26,58 @@
 body {
   background: var(--dark);
   overflow: hidden;
-  color: white;
+  height: 100vh;
 }
 
 /* =========================
-   CITY BACKGROUND
+   CITY BACKGROUND (FIXED)
+   Uses multiple layers for reliability
 ========================= */
 .city {
   position: fixed;
   inset: 0;
-  background-image: url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2000&q=80");
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.45) contrast(1.2);
-  animation: cityMove 20s ease-in-out infinite;
+  z-index: 0;
+
+  /* fallback gradient (always shows) */
+  background: linear-gradient(to top, #02030a, #05060a 60%, #0b0f1a);
+
+  overflow: hidden;
 }
 
+/* skyline image layer */
+.city::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=80");
+  background-size: cover;
+  background-position: center bottom;
+
+  opacity: 0.45;
+  filter: brightness(0.6) contrast(1.3);
+
+  animation: cityMove 18s ease-in-out infinite;
+}
+
+/* neon haze layer */
+.city::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,79,216,0.18), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0,229,255,0.14), transparent 45%);
+
+  mix-blend-mode: screen;
+}
+
+/* city motion */
 @keyframes cityMove {
   0% { transform: scale(1.05) translateY(0px); }
-  50% { transform: scale(1.1) translateY(-10px); }
+  50% { transform: scale(1.12) translateY(-12px); }
   100% { transform: scale(1.05) translateY(0px); }
-}
-
-/* =========================
-   NEON OVERLAY
-========================= */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,79,216,0.15), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(0,229,255,0.12), transparent 45%);
 }
 
 /* =========================
@@ -66,39 +87,47 @@ body {
   position: relative;
   z-index: 10;
   height: 100vh;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   text-align: center;
+  color: white;
 }
 
 .logo {
-  font-size: 70px;
+  font-size: 72px;
   font-weight: bold;
 }
 
 .logo-i {
   color: var(--pink);
-  text-shadow: 0 0 20px var(--pink);
+  text-shadow: 0 0 20px var(--pink), 0 0 40px var(--cyan);
   position: relative;
 }
 
-/* sparkle effect */
+/* sparkle */
 .logo-i::after {
   content: "";
   position: absolute;
-  top: -8px;
+  top: -10px;
   left: 50%;
+
   width: 6px;
   height: 6px;
   background: white;
-  box-shadow: 0 0 10px var(--pink), 0 0 25px var(--cyan);
-  animation: sparkle 1.5s infinite;
+
+  box-shadow:
+    0 0 10px var(--pink),
+    0 0 25px var(--cyan);
+
+  animation: sparkle 1.4s infinite;
 }
 
 @keyframes sparkle {
-  0%,100% { transform: scale(0.8); opacity: 0.5; }
+  0%,100% { transform: scale(0.8); opacity: 0.4; }
   50% { transform: scale(1.6); opacity: 1; }
 }
 
@@ -106,7 +135,6 @@ body {
   margin-top: 10px;
   font-size: 18px;
   opacity: 0.8;
-  max-width: 300px;
 }
 
 /* =========================
@@ -154,7 +182,6 @@ body {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: var(--pink);
   border-radius: 50%;
   opacity: 0.6;
   animation: floatUp linear infinite;
@@ -170,9 +197,8 @@ body {
 
 <body>
 
-<!-- BACKGROUND -->
+<!-- CITY BACKGROUND -->
 <div class="city"></div>
-<div class="overlay"></div>
 
 <!-- HERO -->
 <div class="hero">
@@ -194,7 +220,7 @@ body {
 <script>
 const colors = ["#ff4fd8", "#00e5ff", "#ffffff"];
 
-function createParticle() {
+function spawnParticle() {
   const p = document.createElement("div");
   p.classList.add("particle");
 
@@ -209,12 +235,10 @@ function createParticle() {
 
   document.body.appendChild(p);
 
-  setTimeout(() => {
-    p.remove();
-  }, 8000);
+  setTimeout(() => p.remove(), 8000);
 }
 
-setInterval(createParticle, 150);
+setInterval(spawnParticle, 120);
 </script>
 
 </body>
