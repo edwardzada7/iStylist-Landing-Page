@@ -26,37 +26,35 @@ body{
 }
 
 /* =========================
-   BACKGROUND (REAL + DARK)
+   BACKGROUND (FIXED PROPERLY)
 ========================= */
 .city{
   position:fixed;
   inset:0;
   z-index:0;
-  background: linear-gradient(to bottom, #05060a, #0b0f1a);
 }
 
-/* image layer */
 .city::before{
   content:"";
   position:absolute;
   inset:0;
   background-size:cover;
   background-position:center;
-  filter:brightness(0.45) contrast(1.3);
+  filter:brightness(0.45) contrast(1.2);
+  transition:background-image 1s ease-in-out;
   animation:zoom 18s ease-in-out infinite;
 }
 
-/* overlay */
+/* DARK OVERLAY */
 .city::after{
   content:"";
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(to bottom,
-      rgba(5,6,10,0.7),
-      rgba(5,6,10,0.6),
-      rgba(5,6,10,0.85)
-    );
+  background:linear-gradient(
+    rgba(5,6,10,0.7),
+    rgba(5,6,10,0.6),
+    rgba(5,6,10,0.9)
+  );
 }
 
 @keyframes zoom{
@@ -85,8 +83,8 @@ body{
 .logo-i{
   color:var(--pink);
   text-shadow:0 0 25px var(--pink),0 0 50px var(--cyan);
-  position:relative;
   animation:pulse 1.4s infinite;
+  position:relative;
 }
 
 @keyframes pulse{
@@ -116,9 +114,9 @@ body{
 .tagline{
   margin-top:10px;
   opacity:0.85;
-  max-width:360px;
 }
 
+/* BUTTONS */
 .buttons{
   margin-top:20px;
   display:flex;
@@ -129,7 +127,6 @@ body{
   padding:12px 22px;
   border-radius:30px;
   border:none;
-  cursor:pointer;
   font-weight:bold;
 }
 
@@ -139,8 +136,8 @@ body{
 }
 
 .secondary{
-  background:transparent;
   border:1px solid white;
+  background:transparent;
   color:white;
 }
 
@@ -152,37 +149,18 @@ section{
   text-align:center;
 }
 
-h2{font-size:34px;margin-bottom:10px;}
-p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
-
-/* PARTNERS */
-.partners{
+.partners, .downloads{
   display:flex;
   justify-content:center;
+  gap:15px;
+  margin-top:20px;
   flex-wrap:wrap;
-  gap:15px;
-  margin-top:20px;
 }
 
-.partner{
+.partner, .store{
   padding:10px 18px;
-  border-radius:20px;
+  border-radius:15px;
   background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.2);
-}
-
-/* DOWNLOAD */
-.downloads{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin-top:20px;
-}
-
-.store{
-  padding:12px 18px;
-  border-radius:12px;
-  background:black;
   border:1px solid rgba(255,255,255,0.2);
 }
 
@@ -191,11 +169,10 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
   max-width:700px;
   margin:auto;
   text-align:left;
-  margin-top:20px;
 }
 
 .faq-item{
-  margin-bottom:12px;
+  margin:10px 0;
   padding:15px;
   background:rgba(255,255,255,0.05);
   border-radius:10px;
@@ -204,7 +181,6 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
 
 .faq-item p{
   display:none;
-  margin-top:10px;
 }
 
 .faq-item.active p{
@@ -228,10 +204,9 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
   </div>
 </div>
 
-<!-- TRUSTED PARTNERS -->
+<!-- PARTNERS -->
 <section>
   <h2>Trusted Partners</h2>
-  <p>Secure payments powered by trusted providers</p>
   <div class="partners">
     <div class="partner">Paystack</div>
     <div class="partner">Providus Bank</div>
@@ -242,7 +217,6 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
 <!-- DOWNLOAD -->
 <section>
   <h2>Download iStylist</h2>
-  <p>Get the app on your device</p>
   <div class="downloads">
     <div class="store">📱 iOS App Store</div>
     <div class="store">🤖 Google Play Store</div>
@@ -255,17 +229,11 @@ p{opacity:0.85;max-width:520px;margin:auto;line-height:1.6;}
   <div class="faq">
     <div class="faq-item" onclick="toggle(this)">
       <h4>What services are available?</h4>
-      <p>Barbers, Makeup Artists, Nail Techs, DJs, Photographers and more.</p>
+      <p>Barbers, Makeup Artists, Nail Techs, DJs and more.</p>
     </div>
-
     <div class="faq-item" onclick="toggle(this)">
       <h4>How does booking work?</h4>
-      <p>Select a service, choose stylist, and book instantly.</p>
-    </div>
-
-    <div class="faq-item" onclick="toggle(this)">
-      <h4>Is payment secure?</h4>
-      <p>Yes — payments are processed via Paystack.</p>
+      <p>Select service → choose stylist → book instantly.</p>
     </div>
   </div>
 </section>
@@ -281,27 +249,25 @@ function toggle(el){
 }
 
 /* =========================
-   REAL LAGOS + BEAUTY IMAGES
+   RELIABLE IMAGE ROTATION
 ========================= */
 const images = [
-  "https://source.unsplash.com/1600x900/?lagos,nigeria,city,night",
-  "https://source.unsplash.com/1600x900/?lekki,ikoyi,bridge,lagos",
-  "https://source.unsplash.com/1600x900/?victoria,island,lagos",
-  "https://source.unsplash.com/1600x900/?barber,haircut,african",
-  "https://source.unsplash.com/1600x900/?makeup,beauty,african",
-  "https://source.unsplash.com/1600x900/?nails,manicure,beauty"
+  "https://upload.wikimedia.org/wikipedia/commons/5/5c/Lekki-Ikoyi_Link_Bridge%2C_Lagos.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/3/3e/Victoria_Island_Lagos.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/7/7e/Lagos_skyline.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/6/6b/Lagos_Island.jpg"
 ];
 
-const city = document.querySelector(".city");
 let i = 0;
 
-function setBg(){
-  city.style.backgroundImage = `url(${images[i]})`;
+function changeBg(){
+  document.querySelector(".city::before"); // force repaint
+  document.styleSheets[0].addRule('.city::before', 'background-image: url(' + images[i] + ')');
   i = (i + 1) % images.length;
 }
 
-setBg();
-setInterval(setBg, 6000);
+changeBg();
+setInterval(changeBg, 6000);
 </script>
 
 </body>
