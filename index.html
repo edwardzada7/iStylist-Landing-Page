@@ -6,191 +6,208 @@
 <title>iStylist</title>
 
 <style>
-/* =========================
-   BRAND COLORS
-========================= */
-:root {
-  --pink: #ff4fd8;
-  --cyan: #00e5ff;
-  --dark: #05060a;
+:root{
+  --pink:#ff4fd8;
+  --cyan:#00e5ff;
+  --dark:#05060a;
+  --white:#ffffff;
 }
 
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
 }
 
-body {
-  background: var(--dark);
-  overflow: hidden;
-  height: 100vh;
+body{
+  background:var(--dark);
+  color:white;
+  overflow-x:hidden;
 }
 
 /* =========================
-   CITY BACKGROUND (FIXED)
-   Uses multiple layers for reliability
+   FIXED CITY BACKGROUND
 ========================= */
-.city {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-
-  /* fallback gradient (always shows) */
-  background: linear-gradient(to top, #02030a, #05060a 60%, #0b0f1a);
-
-  overflow: hidden;
-}
-
-/* skyline image layer */
-.city::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background-image: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=80");
-  background-size: cover;
-  background-position: center bottom;
-
-  opacity: 0.45;
-  filter: brightness(0.6) contrast(1.3);
-
-  animation: cityMove 18s ease-in-out infinite;
-}
-
-/* neon haze layer */
-.city::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
+.city{
+  position:fixed;
+  inset:0;
+  z-index:0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(255,79,216,0.18), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(0,229,255,0.14), transparent 45%);
-
-  mix-blend-mode: screen;
+    linear-gradient(to top,#05060a,#070a14 60%,#0b0f1a);
 }
 
-/* city motion */
-@keyframes cityMove {
-  0% { transform: scale(1.05) translateY(0px); }
-  50% { transform: scale(1.12) translateY(-12px); }
-  100% { transform: scale(1.05) translateY(0px); }
+.city::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=80");
+  background-size:cover;
+  background-position:center bottom;
+  opacity:0.45;
+  filter:brightness(0.6) contrast(1.3);
+  animation:moveCity 20s ease-in-out infinite;
 }
 
-/* =========================
-   HERO
-========================= */
-.hero {
-  position: relative;
-  z-index: 10;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-  color: white;
+.city::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(255,79,216,0.18),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(0,229,255,0.14),transparent 45%);
 }
 
-.logo {
-  font-size: 72px;
-  font-weight: bold;
-}
-
-.logo-i {
-  color: var(--pink);
-  text-shadow: 0 0 20px var(--pink), 0 0 40px var(--cyan);
-  position: relative;
-}
-
-/* sparkle */
-.logo-i::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-
-  width: 6px;
-  height: 6px;
-  background: white;
-
-  box-shadow:
-    0 0 10px var(--pink),
-    0 0 25px var(--cyan);
-
-  animation: sparkle 1.4s infinite;
-}
-
-@keyframes sparkle {
-  0%,100% { transform: scale(0.8); opacity: 0.4; }
-  50% { transform: scale(1.6); opacity: 1; }
-}
-
-.tagline {
-  margin-top: 10px;
-  font-size: 18px;
-  opacity: 0.8;
+@keyframes moveCity{
+  0%{transform:scale(1.05) translateY(0);}
+  50%{transform:scale(1.1) translateY(-10px);}
+  100%{transform:scale(1.05) translateY(0);}
 }
 
 /* =========================
-   BUTTONS
+   CONTENT LAYERS
 ========================= */
-.buttons {
-  margin-top: 25px;
-  display: flex;
-  gap: 12px;
-}
-
-.btn {
-  padding: 12px 22px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.primary {
-  background: linear-gradient(90deg, var(--pink), var(--cyan));
-  color: black;
-}
-
-.primary:hover {
-  transform: scale(1.05);
-}
-
-.secondary {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-}
-
-.secondary:hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
+.content{
+  position:relative;
+  z-index:10;
 }
 
 /* =========================
-   PARTICLES
+   HERO SECTION
 ========================= */
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  opacity: 0.6;
-  animation: floatUp linear infinite;
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(100vh); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
+.logo{
+  font-size:80px;
+  font-weight:bold;
+}
+
+.logo-i{
+  color:var(--pink);
+  text-shadow:0 0 25px var(--pink),0 0 40px var(--cyan);
+  position:relative;
+}
+
+.logo-i::after{
+  content:"";
+  position:absolute;
+  top:-10px;
+  left:50%;
+  width:6px;
+  height:6px;
+  background:white;
+  box-shadow:0 0 15px var(--pink),0 0 25px var(--cyan);
+  animation:spark 1.5s infinite;
+}
+
+@keyframes spark{
+  0%,100%{transform:scale(0.7);opacity:0.4;}
+  50%{transform:scale(1.6);opacity:1;}
+}
+
+.tagline{
+  margin-top:10px;
+  opacity:0.8;
+  max-width:320px;
+}
+
+/* buttons */
+.buttons{
+  margin-top:25px;
+  display:flex;
+  gap:12px;
+}
+
+.btn{
+  padding:12px 22px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.primary{
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  color:black;
+}
+
+.primary:hover{transform:scale(1.05);}
+
+.secondary{
+  background:transparent;
+  border:1px solid white;
+  color:white;
+}
+
+.secondary:hover{
+  border-color:var(--cyan);
+  color:var(--cyan);
+}
+
+/* =========================
+   SECTIONS (SCROLL STORY)
+========================= */
+section{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:80px 20px;
+  opacity:0;
+  transform:translateY(60px);
+  transition:all 1s ease;
+}
+
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h2{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+p{
+  max-width:500px;
+  opacity:0.8;
+  line-height:1.6;
+}
+
+/* glow cards */
+.card{
+  margin-top:20px;
+  padding:20px 30px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.05);
+  box-shadow:0 0 30px rgba(255,79,216,0.08);
+}
+
+/* =========================
+   SCROLL HINT
+========================= */
+.scroll{
+  position:absolute;
+  bottom:30px;
+  font-size:12px;
+  opacity:0.6;
+  animation:fade 2s infinite;
+}
+
+@keyframes fade{
+  0%,100%{opacity:0.3;}
+  50%{opacity:1;}
 }
 </style>
 </head>
@@ -200,6 +217,8 @@ body {
 <!-- CITY BACKGROUND -->
 <div class="city"></div>
 
+<div class="content">
+
 <!-- HERO -->
 <div class="hero">
   <div class="logo">
@@ -207,38 +226,53 @@ body {
   </div>
 
   <div class="tagline">
-    Book Beauty, Fashion & Lifestyle Services Anywhere
+    The Global Marketplace for Beauty, Fashion & Lifestyle Services
   </div>
 
   <div class="buttons">
     <button class="btn primary">Get Started</button>
-    <button class="btn secondary">Explore Stylists</button>
+    <button class="btn secondary">Explore</button>
   </div>
+
+  <div class="scroll">Scroll to explore ↓</div>
 </div>
 
-<!-- PARTICLES -->
+<!-- SECTION 1 -->
+<section>
+  <h2>Book Anywhere</h2>
+  <p>From Lagos to London to New York — connect with top stylists instantly.</p>
+  <div class="card">Beauty • Fashion • Lifestyle • Events</div>
+</section>
+
+<!-- SECTION 2 -->
+<section>
+  <h2>Verified Professionals</h2>
+  <p>Every stylist is reviewed, rated, and trusted before joining the platform.</p>
+  <div class="card">Barbers • Makeup Artists • Nail Techs • DJs • Photographers</div>
+</section>
+
+<!-- SECTION 3 -->
+<section>
+  <h2>Instant Booking</h2>
+  <p>Choose location, time, and service — and get matched instantly.</p>
+  <div class="card">No waiting. No stress. Just beauty on demand.</div>
+</section>
+
+</div>
+
 <script>
-const colors = ["#ff4fd8", "#00e5ff", "#ffffff"];
+// reveal sections on scroll
+const sections = document.querySelectorAll("section");
 
-function spawnParticle() {
-  const p = document.createElement("div");
-  p.classList.add("particle");
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:0.2});
 
-  const size = Math.random() * 4 + 2;
-  p.style.width = size + "px";
-  p.style.height = size + "px";
-
-  p.style.left = Math.random() * window.innerWidth + "px";
-  p.style.animationDuration = (3 + Math.random() * 5) + "s";
-
-  p.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-  document.body.appendChild(p);
-
-  setTimeout(() => p.remove(), 8000);
-}
-
-setInterval(spawnParticle, 120);
+sections.forEach(sec=>observer.observe(sec));
 </script>
 
 </body>
