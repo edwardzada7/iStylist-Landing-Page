@@ -3,163 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iStylist — Beauty Meets Technology</title>
+<title>iStylist — Grow Your Beauty Business</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 
-body {
-  background: linear-gradient(135deg, #ff4da6, #7a5cff);
-  color: white;
-  overflow-x: hidden;
+body{
+  background: linear-gradient(135deg,#ff4da6,#7a5cff);
+  color:white;
 }
 
 /* NAV */
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 8%;
-  align-items: center;
+nav{
+  display:flex;justify-content:space-between;
+  padding:20px 8%;align-items:center;
 }
 
-.logo {
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.nav-btn {
-  padding: 10px 20px;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: transparent;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
+.logo{font-size:22px;font-weight:700;}
+.nav-btn{
+  padding:10px 20px;border-radius:10px;
+  border:1px solid rgba(255,255,255,0.3);
+  background:transparent;color:white;cursor:pointer;
 }
 
 /* HERO */
-.hero {
-  text-align: center;
-  padding: 100px 20px 80px;
-  position: relative;
+.hero{text-align:center;padding:100px 20px 60px;}
+.hero h1{font-size:52px;}
+.hero p{margin-top:20px;opacity:0.9;}
+.cta{
+  margin-top:30px;padding:16px 40px;
+  border:none;border-radius:14px;
+  background:white;color:#7a5cff;font-weight:600;
+  cursor:pointer;
 }
 
-.hero h1 {
-  font-size: 52px;
+/* SOCIAL PROOF */
+.social{
+  text-align:center;margin-top:40px;
+  opacity:0.85;font-size:14px;
 }
 
-.hero p {
-  margin-top: 20px;
-  font-size: 18px;
-  opacity: 0.9;
+/* SECTIONS */
+.section{
+  padding:80px 8%;
 }
 
-.cta {
-  margin-top: 30px;
-  padding: 16px 40px;
-  border: none;
-  border-radius: 14px;
-  background: white;
-  color: #7a5cff;
-  font-weight: 600;
-  cursor: pointer;
+/* HOW IT WORKS */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;margin-top:40px;
 }
-
-/* FLOATING IMAGES */
-.floating {
-  position: absolute;
-  width: 120px;
-  animation: float 6s ease-in-out infinite;
-}
-
-.floating:nth-child(1) { top: 10%; left: 5%; }
-.floating:nth-child(2) { top: 20%; right: 10%; }
-.floating:nth-child(3) { bottom: 10%; left: 15%; }
-.floating:nth-child(4) { bottom: 20%; right: 10%; }
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+.step{
+  background:white;color:#333;
+  padding:25px;border-radius:14px;
+  text-align:center;
 }
 
 /* FEATURES */
-.features {
-  background: white;
-  color: #333;
-  padding: 80px 8%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 30px;
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
 }
-
-.feature {
-  padding: 30px;
-  border-radius: 16px;
-  background: #fafafa;
+.feature{
+  background:white;color:#333;
+  padding:30px;border-radius:16px;
 }
 
 /* PRICING */
-.pricing {
-  padding: 80px 8%;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+.pricing{
+  display:flex;gap:30px;
+  justify-content:center;flex-wrap:wrap;
+}
+.card{
+  background:white;color:#333;
+  padding:40px;border-radius:20px;
+  width:300px;text-align:center;
+}
+.price{font-size:32px;margin:20px 0;}
+.card button{
+  margin-top:20px;padding:14px;width:100%;
+  border:none;border-radius:12px;
+  background:linear-gradient(135deg,#ff4da6,#7a5cff);
+  color:white;cursor:pointer;
 }
 
-.card {
-  background: white;
-  color: #333;
-  padding: 40px;
-  border-radius: 20px;
-  width: 300px;
-  text-align: center;
-}
+/* PAYMENTS */
+.payments{text-align:center;}
+.payments img{margin-top:20px;width:140px;}
 
-.price {
-  font-size: 32px;
-  margin: 20px 0;
+/* FAQ */
+.faq{
+  max-width:800px;margin:auto;
 }
-
-.card button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 14px;
-  border: none;
-  background: linear-gradient(135deg, #ff4da6, #7a5cff);
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
+.faq-item{
+  background:white;color:#333;
+  margin-bottom:15px;padding:20px;
+  border-radius:12px;
 }
 
 /* DOWNLOAD */
-.download {
-  text-align: center;
-  padding: 80px 20px;
-}
-
-.download a {
-  display: inline-block;
-  margin: 10px;
-  padding: 14px 24px;
-  border-radius: 12px;
-  background: white;
-  color: #7a5cff;
-  text-decoration: none;
+.download{text-align:center;}
+.download a{
+  display:inline-block;margin:10px;
+  padding:14px 24px;border-radius:12px;
+  background:white;color:#7a5cff;
+  text-decoration:none;
 }
 
 /* FOOTER */
-footer {
-  text-align: center;
-  padding: 40px;
-  opacity: 0.8;
+footer{
+  text-align:center;padding:40px;
+  font-size:14px;opacity:0.8;
 }
 </style>
 </head>
@@ -172,61 +130,102 @@ footer {
 </nav>
 
 <section class="hero">
-
-  <!-- FLOATING IMAGES -->
- 
-  <img src="assets/image1.png" class="floating">
-  <img src="assets/image2.png" class="floating">
-  <img src="assets/image3.png" class="floating">
-  <img src="assets/image4.png" class="floating">
-
-  <h1>Beauty Meets <br>Technology ✨</h1>
-  <p>Grow your brand. Get discovered. Get booked.</p>
+  <h1>Turn Your Skill Into Consistent Bookings</h1>
+  <p>Join professionals growing their business with iStylist</p>
   <button class="cta" onclick="goToApp()">Upgrade Now</button>
 
-</section>
-
-<section class="features">
-  <div class="feature">
-    <h3>More Visibility</h3>
-    <p>Stand out and attract more clients instantly.</p>
-  </div>
-  <div class="feature">
-    <h3>More Bookings</h3>
-    <p>Turn your skills into consistent income.</p>
-  </div>
-  <div class="feature">
-    <h3>Premium Branding</h3>
-    <p>Position yourself as a top stylist.</p>
+  <div class="social">
+    Trusted by stylists across Lagos and growing globally 🌍
   </div>
 </section>
 
-<section class="pricing">
-
-  <div class="card">
-    <h2>Pro</h2>
-    <div class="price">₦10,000/mo</div>
-    <p>Boost your visibility</p>
-    <button onclick="goToApp()">Upgrade</button>
+<!-- HOW IT WORKS -->
+<section class="section">
+  <h2 style="text-align:center;">How It Works</h2>
+  <div class="steps">
+    <div class="step">Sign up</div>
+    <div class="step">Create profile</div>
+    <div class="step">Get discovered</div>
+    <div class="step">Receive bookings</div>
   </div>
-
-  <div class="card">
-    <h2>Premium</h2>
-    <div class="price">₦25,000/mo</div>
-    <p>Dominate your category</p>
-    <button onclick="goToApp()">Upgrade</button>
-  </div>
-
 </section>
 
-<section class="download">
-  <h2>Download iStylist</h2>
+<!-- FEATURES -->
+<section class="section">
+  <h2 style="text-align:center;">Why Upgrade</h2>
+  <div class="features">
+    <div class="feature">Appear at the top of search results</div>
+    <div class="feature">Get more bookings and visibility</div>
+    <div class="feature">Stand out as a premium stylist</div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+  <h2 style="text-align:center;">Pricing</h2>
+  <div class="pricing">
+
+    <div class="card">
+      <h2>Pro</h2>
+      <div class="price">₦10,000/mo</div>
+      <p>Boost your visibility</p>
+      <button onclick="goToApp()">Upgrade</button>
+    </div>
+
+    <div class="card">
+      <h2>Premium</h2>
+      <div class="price">₦25,000/mo</div>
+      <p>Dominate your category</p>
+      <button onclick="goToApp()">Upgrade</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- PAYMENTS -->
+<section class="section payments">
+  <h2>Secure Payments</h2>
+  <p>We use trusted payment providers to ensure safe transactions</p>
+  <img src="assets/icons/paystack.png" alt="Paystack">
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <h2 style="text-align:center;">FAQ</h2>
+  <div class="faq">
+
+    <div class="faq-item">
+      <strong>Can I use iStylist for free?</strong>
+      <p>Yes. You can use the platform for free and upgrade anytime.</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>How do I upgrade?</strong>
+      <p>Click Upgrade and sign in to your account.</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>Is payment secure?</strong>
+      <p>Yes. All payments are securely processed.</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>Can I cancel anytime?</strong>
+      <p>Yes, subscriptions can be managed anytime.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="section download">
+  <h2>Get the App</h2>
   <a href="#">🍎 iOS App</a>
   <a href="#">🤖 Android App</a>
 </section>
 
 <footer>
-  © 2026 iStylist
+  © 2026 iStylist • Terms • Privacy • Contact
 </footer>
 
 <script>
