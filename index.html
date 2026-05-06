@@ -10,7 +10,6 @@
   --pink:#ff4fd8;
   --cyan:#00e5ff;
   --dark:#05060a;
-  --white:#ffffff;
 }
 
 *{
@@ -22,12 +21,12 @@
 
 body{
   background:var(--dark);
-  color:white;
   overflow-x:hidden;
+  color:white;
 }
 
 /* =========================
-   LAGOS CITY BACKGROUND
+   BACKGROUND SLIDESHOW
 ========================= */
 .city{
   position:fixed;
@@ -39,30 +38,26 @@ body{
   content:"";
   position:absolute;
   inset:0;
-
-  /* Lagos skyline style image */
-  background-image:url("https://images.unsplash.com/photo-1526403225757-4f6d8a5b8d2d?auto=format&fit=crop&w=2000&q=80");
   background-size:cover;
   background-position:center;
-
   filter:brightness(0.45) contrast(1.2);
-  animation:cityMove 18s ease-in-out infinite;
+  animation:zoom 20s infinite ease-in-out;
 }
 
 .city::after{
   content:"";
   position:absolute;
   inset:0;
-
   background:
     radial-gradient(circle at 20% 30%,rgba(255,79,216,0.18),transparent 40%),
     radial-gradient(circle at 80% 70%,rgba(0,229,255,0.14),transparent 45%);
 }
 
-@keyframes cityMove{
-  0%{transform:scale(1.05) translateY(0);}
-  50%{transform:scale(1.1) translateY(-10px);}
-  100%{transform:scale(1.05) translateY(0);}
+/* smooth zoom motion */
+@keyframes zoom{
+  0%{transform:scale(1.05);}
+  50%{transform:scale(1.12);}
+  100%{transform:scale(1.05);}
 }
 
 /* =========================
@@ -84,9 +79,44 @@ body{
   font-weight:bold;
 }
 
+/* FIXED BLINKING i */
 .logo-i{
   color:var(--pink);
   text-shadow:0 0 25px var(--pink),0 0 40px var(--cyan);
+  position:relative;
+  animation:pulse 1.5s infinite;
+}
+
+/* blinking glow */
+@keyframes pulse{
+  0%,100%{
+    opacity:0.6;
+    text-shadow:0 0 10px var(--pink),0 0 20px var(--cyan);
+  }
+  50%{
+    opacity:1;
+    text-shadow:0 0 25px var(--pink),0 0 50px var(--cyan);
+  }
+}
+
+/* sparkle dot */
+.logo-i::after{
+  content:"";
+  position:absolute;
+  top:-10px;
+  left:50%;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 0 15px var(--pink),0 0 25px var(--cyan);
+  animation:spark 1.2s infinite;
+}
+
+@keyframes spark{
+  0%{transform:scale(0.5);opacity:0.3;}
+  50%{transform:scale(1.6);opacity:1;}
+  100%{transform:scale(0.5);opacity:0.3;}
 }
 
 .tagline{
@@ -130,53 +160,8 @@ section{
   text-align:center;
 }
 
-h2{
-  font-size:34px;
-  margin-bottom:10px;
-}
-
-p{
-  opacity:0.8;
-  max-width:500px;
-  margin:auto;
-  line-height:1.6;
-}
-
-/* =========================
-   TRUSTED PARTNERS
-========================= */
-.partners{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  margin-top:20px;
-}
-
-.partner{
-  padding:10px 18px;
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:20px;
-  background:rgba(255,255,255,0.05);
-}
-
-/* =========================
-   DOWNLOAD ICONS
-========================= */
-.downloads{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin-top:20px;
-}
-
-.store{
-  padding:12px 18px;
-  border-radius:12px;
-  background:black;
-  border:1px solid rgba(255,255,255,0.2);
-  cursor:pointer;
-}
+h2{font-size:34px;}
+p{opacity:0.8;max-width:500px;margin:auto;line-height:1.6;}
 
 /* =========================
    FAQ
@@ -189,15 +174,11 @@ p{
 }
 
 .faq-item{
-  margin-bottom:15px;
+  margin-bottom:12px;
   padding:15px;
-  border-radius:10px;
   background:rgba(255,255,255,0.05);
+  border-radius:10px;
   cursor:pointer;
-}
-
-.faq-item h4{
-  font-size:16px;
 }
 
 .faq-item p{
@@ -227,29 +208,6 @@ p{
   </div>
 </div>
 
-<!-- TRUSTED PARTNERS -->
-<section>
-  <h2>Trusted Partners</h2>
-  <p>We integrate with secure and reliable payment providers</p>
-
-  <div class="partners">
-    <div class="partner">Paystack</div>
-    <div class="partner">Providus Bank</div>
-    <div class="partner">Stripe (Global)</div>
-  </div>
-</section>
-
-<!-- DOWNLOAD -->
-<section>
-  <h2>Download iStylist</h2>
-  <p>Get the app on your device</p>
-
-  <div class="downloads">
-    <div class="store">📱 App Store</div>
-    <div class="store">🤖 Google Play</div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section>
   <h2>FAQ</h2>
@@ -257,17 +215,17 @@ p{
   <div class="faq">
     <div class="faq-item" onclick="toggle(this)">
       <h4>What services are available?</h4>
-      <p>Barbers, Hair Stylists, Makeup Artists, Nail Techs, DJs, Photographers and more.</p>
+      <p>Barbers, Makeup Artists, Nail Techs, DJs, Photographers and more.</p>
     </div>
 
     <div class="faq-item" onclick="toggle(this)">
-      <h4>How do bookings work?</h4>
-      <p>Select a service, choose a stylist, set time and confirm booking instantly.</p>
+      <h4>How does booking work?</h4>
+      <p>Select service → choose stylist → set time → confirm instantly.</p>
     </div>
 
     <div class="faq-item" onclick="toggle(this)">
       <h4>Is payment secure?</h4>
-      <p>Yes, all payments are processed through trusted gateways like Paystack.</p>
+      <p>Yes, payments are handled securely via Paystack.</p>
     </div>
   </div>
 </section>
@@ -276,6 +234,26 @@ p{
 function toggle(el){
   el.classList.toggle("active");
 }
+
+/* =========================
+   BACKGROUND SLIDESHOW
+========================= */
+const images = [
+  "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2000&q=80"
+];
+
+let index = 0;
+
+function changeBg(){
+  document.querySelector(".city").style.setProperty("--img", images[index]);
+  document.querySelector(".city").style.setProperty("background-image", `url(${images[index]})`);
+  index = (index + 1) % images.length;
+}
+
+changeBg();
+setInterval(changeBg, 6000);
 </script>
 
 </body>
