@@ -21,8 +21,8 @@
 
 body{
   background:var(--dark);
-  overflow-x:hidden;
   color:white;
+  overflow-x:hidden;
 }
 
 /* =========================
@@ -32,38 +32,26 @@ body{
   position:fixed;
   inset:0;
   z-index:0;
-}
-
-.city::before{
-  content:"";
-  position:absolute;
-  inset:0;
   background-size:cover;
   background-position:center;
-  filter:brightness(0.45) contrast(1.2);
   transition:background-image 1s ease-in-out;
-  animation:zoom 18s ease-in-out infinite;
 }
 
-/* DARK OVERLAY */
+/* dark overlay */
 .city::after{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
-    rgba(5,6,10,0.7),
-    rgba(5,6,10,0.6),
+    rgba(5,6,10,0.65),
+    rgba(5,6,10,0.75),
     rgba(5,6,10,0.9)
   );
 }
 
-@keyframes zoom{
-  0%{transform:scale(1.05);}
-  50%{transform:scale(1.12);}
-  100%{transform:scale(1.05);}
-}
-
-/* HERO */
+/* =========================
+   HERO
+========================= */
 .hero{
   position:relative;
   z-index:2;
@@ -76,7 +64,7 @@ body{
 }
 
 .logo{
-  font-size:82px;
+  font-size:80px;
   font-weight:bold;
 }
 
@@ -116,7 +104,6 @@ body{
   opacity:0.85;
 }
 
-/* BUTTONS */
 .buttons{
   margin-top:20px;
   display:flex;
@@ -141,7 +128,9 @@ body{
   color:white;
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 section{
   position:relative;
   z-index:2;
@@ -153,8 +142,8 @@ section{
   display:flex;
   justify-content:center;
   gap:15px;
-  margin-top:20px;
   flex-wrap:wrap;
+  margin-top:20px;
 }
 
 .partner, .store{
@@ -204,7 +193,7 @@ section{
   </div>
 </div>
 
-<!-- PARTNERS -->
+<!-- TRUSTED PARTNERS -->
 <section>
   <h2>Trusted Partners</h2>
   <div class="partners">
@@ -223,17 +212,23 @@ section{
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- FULL FAQ RESTORED -->
 <section>
   <h2>FAQ</h2>
   <div class="faq">
     <div class="faq-item" onclick="toggle(this)">
       <h4>What services are available?</h4>
-      <p>Barbers, Makeup Artists, Nail Techs, DJs and more.</p>
+      <p>Barbers, Makeup Artists, Nail Techs, DJs, Photographers and more.</p>
     </div>
+
     <div class="faq-item" onclick="toggle(this)">
       <h4>How does booking work?</h4>
       <p>Select service → choose stylist → book instantly.</p>
+    </div>
+
+    <div class="faq-item" onclick="toggle(this)">
+      <h4>Is payment secure?</h4>
+      <p>Yes — payments are processed via Paystack.</p>
     </div>
   </div>
 </section>
@@ -249,7 +244,7 @@ function toggle(el){
 }
 
 /* =========================
-   RELIABLE IMAGE ROTATION
+   WORKING BACKGROUND ROTATION
 ========================= */
 const images = [
   "https://upload.wikimedia.org/wikipedia/commons/5/5c/Lekki-Ikoyi_Link_Bridge%2C_Lagos.jpg",
@@ -258,11 +253,11 @@ const images = [
   "https://upload.wikimedia.org/wikipedia/commons/6/6b/Lagos_Island.jpg"
 ];
 
+const city = document.querySelector(".city");
 let i = 0;
 
 function changeBg(){
-  document.querySelector(".city::before"); // force repaint
-  document.styleSheets[0].addRule('.city::before', 'background-image: url(' + images[i] + ')');
+  city.style.backgroundImage = `url(${images[i]})`;
   i = (i + 1) % images.length;
 }
 
