@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iStylist — Grow Your Beauty Business</title>
+<title>iStylist — Beauty Meets Technology</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -16,9 +16,9 @@
 }
 
 body {
-  background: #050507;
-  color: #fff;
-  line-height: 1.6;
+  background: linear-gradient(135deg, #ff4da6, #7a5cff);
+  color: white;
+  overflow-x: hidden;
 }
 
 /* NAV */
@@ -32,62 +32,67 @@ nav {
 .logo {
   font-size: 22px;
   font-weight: 700;
-  letter-spacing: 1px;
 }
 
 .nav-btn {
   padding: 10px 20px;
-  border: 1px solid #333;
+  border: 1px solid rgba(255,255,255,0.3);
   background: transparent;
-  color: #fff;
-  border-radius: 8px;
+  color: white;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 100px 20px 60px;
+  padding: 100px 20px 80px;
+  position: relative;
 }
 
 .hero h1 {
-  font-size: 56px;
-  max-width: 800px;
-  margin: auto;
-}
-
-.hero span {
-  background: linear-gradient(90deg, #6c63ff, #00d4ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 52px;
 }
 
 .hero p {
   margin-top: 20px;
-  color: #aaa;
   font-size: 18px;
+  opacity: 0.9;
 }
 
 .cta {
   margin-top: 30px;
-  padding: 16px 36px;
-  background: linear-gradient(135deg, #6c63ff, #00d4ff);
+  padding: 16px 40px;
   border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 16px;
+  border-radius: 14px;
+  background: white;
+  color: #7a5cff;
+  font-weight: 600;
   cursor: pointer;
 }
 
-/* TRUST */
-.trust {
-  text-align: center;
-  margin-top: 60px;
-  color: #777;
+/* FLOATING IMAGES */
+.floating {
+  position: absolute;
+  width: 120px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating:nth-child(1) { top: 10%; left: 5%; }
+.floating:nth-child(2) { top: 20%; right: 10%; }
+.floating:nth-child(3) { bottom: 10%; left: 15%; }
+.floating:nth-child(4) { bottom: 20%; right: 10%; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
 }
 
 /* FEATURES */
 .features {
+  background: white;
+  color: #333;
   padding: 80px 8%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
@@ -95,10 +100,9 @@ nav {
 }
 
 .feature {
-  background: #0d0d12;
   padding: 30px;
   border-radius: 16px;
-  border: 1px solid #1a1a22;
+  background: #fafafa;
 }
 
 /* PRICING */
@@ -111,11 +115,11 @@ nav {
 }
 
 .card {
-  background: #0d0d12;
+  background: white;
+  color: #333;
   padding: 40px;
   border-radius: 20px;
   width: 300px;
-  border: 1px solid #1a1a22;
   text-align: center;
 }
 
@@ -124,21 +128,12 @@ nav {
   margin: 20px 0;
 }
 
-.card ul {
-  list-style: none;
-  margin: 20px 0;
-}
-
-.card ul li {
-  margin: 10px 0;
-  color: #aaa;
-}
-
 .card button {
+  margin-top: 20px;
   width: 100%;
   padding: 14px;
   border: none;
-  background: #6c63ff;
+  background: linear-gradient(135deg, #ff4da6, #7a5cff);
   color: white;
   border-radius: 12px;
   cursor: pointer;
@@ -154,18 +149,17 @@ nav {
   display: inline-block;
   margin: 10px;
   padding: 14px 24px;
-  border: 1px solid #333;
   border-radius: 12px;
+  background: white;
+  color: #7a5cff;
   text-decoration: none;
-  color: white;
 }
 
 /* FOOTER */
 footer {
   text-align: center;
   padding: 40px;
-  color: #777;
-  border-top: 1px solid #111;
+  opacity: 0.8;
 }
 </style>
 </head>
@@ -173,30 +167,36 @@ footer {
 <body>
 
 <nav>
-  <div class="logo">iStylist</div>
+  <div class="logo">iStylist ✨</div>
   <button class="nav-btn" onclick="goToApp()">Sign In</button>
 </nav>
 
 <section class="hero">
-  <h1>Turn Your Skill Into <span>Consistent Bookings</span></h1>
-  <p>Join top stylists growing their business with iStylist</p>
+
+  <!-- FLOATING IMAGES -->
+  <img src="image1.png" class="floating">
+  <img src="image2.png" class="floating">
+  <img src="image3.png" class="floating">
+  <img src="image4.png" class="floating">
+
+  <h1>Beauty Meets <br>Technology ✨</h1>
+  <p>Grow your brand. Get discovered. Get booked.</p>
   <button class="cta" onclick="goToApp()">Upgrade Now</button>
 
-  <div class="trust">Trusted by professionals across multiple services</div>
 </section>
 
 <section class="features">
   <div class="feature">
     <h3>More Visibility</h3>
-    <p>Appear at the top and get discovered faster.</p>
+    <p>Stand out and attract more clients instantly.</p>
   </div>
   <div class="feature">
     <h3>More Bookings</h3>
-    <p>Increase your income with consistent demand.</p>
+    <p>Turn your skills into consistent income.</p>
   </div>
   <div class="feature">
     <h3>Premium Branding</h3>
-    <p>Stand out as a top professional.</p>
+    <p>Position yourself as a top stylist.</p>
   </div>
 </section>
 
@@ -205,36 +205,27 @@ footer {
   <div class="card">
     <h2>Pro</h2>
     <div class="price">₦10,000/mo</div>
-    <ul>
-      <li>Higher ranking</li>
-      <li>More exposure</li>
-      <li>Featured badge</li>
-    </ul>
+    <p>Boost your visibility</p>
     <button onclick="goToApp()">Upgrade</button>
   </div>
 
   <div class="card">
     <h2>Premium</h2>
     <div class="price">₦25,000/mo</div>
-    <ul>
-      <li>Top placement</li>
-      <li>Priority bookings</li>
-      <li>Maximum visibility</li>
-    </ul>
+    <p>Dominate your category</p>
     <button onclick="goToApp()">Upgrade</button>
   </div>
 
 </section>
 
 <section class="download">
-  <h2>Get the iStylist App</h2>
-  <p style="color:#aaa;">Book and manage on the go</p>
+  <h2>Download iStylist</h2>
   <a href="#">🍎 iOS App</a>
   <a href="#">🤖 Android App</a>
 </section>
 
 <footer>
-  © 2026 iStylist. All rights reserved.
+  © 2026 iStylist
 </footer>
 
 <script>
