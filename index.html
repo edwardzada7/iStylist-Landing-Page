@@ -38,6 +38,7 @@ body{
   position:fixed;
   inset:0;
   z-index:0;
+  overflow:hidden;
   background:
     linear-gradient(to top,#05060a,#070a14 60%,#0b0f1a);
 }
@@ -46,12 +47,39 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background-image:url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=80");
   background-size:cover;
-  background-position:center bottom;
-  opacity:0.45;
-  filter:brightness(0.6) contrast(1.3);
-  animation:moveCity 20s ease-in-out infinite;
+  background-position:center center;
+  opacity:0.42;
+  filter:brightness(0.55) contrast(1.2);
+  animation:
+    moveCity 20s ease-in-out infinite,
+    fadeBackground 18s infinite;
+}
+
+/* Lagos Background Rotation */
+
+@keyframes fadeBackground{
+
+  0%,25%{
+    background-image:
+      url("https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2000&q=80");
+  }
+
+  26%,50%{
+    background-image:
+      url("https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=2000&q=80");
+  }
+
+  51%,75%{
+    background-image:
+      url("https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=2000&q=80");
+  }
+
+  76%,100%{
+    background-image:
+      url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=80");
+  }
+
 }
 
 .city::after{
@@ -176,8 +204,13 @@ body{
   animation:pulseGlow 2s ease-in-out infinite;
 }
 
+/* STYLIST SAME BRAND COLOR */
+
 .logo-text{
-  color:var(--cyan);
+  color:var(--pink);
+  text-shadow:
+    0 0 10px rgba(255,79,216,0.7),
+    0 0 20px rgba(255,79,216,0.4);
 }
 
 @keyframes pulseGlow{
@@ -234,9 +267,9 @@ body{
 
 .tagline{
   margin-top:15px;
-  opacity:0.9;
-  max-width:500px;
-  line-height:1.6;
+  opacity:0.92;
+  max-width:550px;
+  line-height:1.7;
   font-size:18px;
 }
 
@@ -273,6 +306,7 @@ body{
 
 .primary:hover{
   transform:translateY(-3px) scale(1.03);
+
   box-shadow:
     0 0 20px rgba(255,79,216,0.5);
 }
