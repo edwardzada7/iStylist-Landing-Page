@@ -183,7 +183,50 @@ body{
   position:relative;
   padding:20px;
 }
+/* =========================
+   BRAND ICON
+========================= */
 
+.brand-icon-wrap{
+  margin-bottom:18px;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.brand-icon{
+  width:110px;
+  height:110px;
+
+  object-fit:contain;
+
+  animation:
+    floatLogo 4s ease-in-out infinite;
+
+  filter:
+    drop-shadow(
+      0 0 20px rgba(255,79,216,0.45)
+    );
+}
+
+/* FLOATING ANIMATION */
+
+@keyframes floatLogo{
+
+  0%,100%{
+    transform:
+      translateY(0px)
+      scale(1);
+  }
+
+  50%{
+    transform:
+      translateY(-10px)
+      scale(1.03);
+  }
+
+}
 /* LOGO */
 
 .logo{
@@ -510,20 +553,44 @@ p{
 
   <!-- HERO -->
 
-  <div class="hero">
+  <!-- =========================
+     FAVICON
+========================= -->
 
-    <div class="logo">
+<link
+  rel="icon"
+  type="image/png"
+  href="assets/favicon.png"
+/>
 
-      <span class="logo-i">
-        i
-        <div class="spark-container"></div>
-      </span>
+<!-- =========================
+     BRAND ICON + LOGO
+     REPLACE YOUR CURRENT
+     LOGO BLOCK WITH THIS
+========================= -->
 
-      <span class="logo-text">
-        Stylist
-      </span>
+<div class="brand-icon-wrap">
 
-    </div>
+  <img
+    src="assets/icon-logo.png"
+    class="brand-icon"
+    alt="iStylist Logo"
+  />
+
+</div>
+
+<div class="logo">
+
+  <span class="logo-i">
+    i
+    <div class="spark-container"></div>
+  </span>
+
+  <span class="logo-text">
+    Stylist
+  </span>
+
+</div>
 
     <div class="tagline">
       The Global Marketplace for Beauty, Fashion & Lifestyle Services
